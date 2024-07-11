@@ -1,0 +1,16 @@
+<div class="tasks-header">
+  <h1>Tasks</h1>
+  <button mat-flat-button>Add Task</button>
+</div>
+<div class="tasks-container">
+  <div *ngFor="let dailySchedule of daysSchedule" class="tasks-list">
+    <b class="task-item-title">{{ dailySchedule.day }}</b>
+    <div *ngFor="let task of dailySchedule.tasks" class="task-item">
+      <p class="task-title">{{ task.title }}</p>
+      <p class="task-interval">
+        {{ task.startTime | date : "shortTime" }} -
+        {{ task.endTime | date : "shortTime" }}
+      </p>
+    </div>
+  </div>
+</div>
