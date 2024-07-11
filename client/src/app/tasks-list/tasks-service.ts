@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DaySchedule } from '../types/DaySchedule';
+import { Day, DaySchedule } from '../types/DaySchedule';
 
 @Injectable({
   providedIn: 'root',
@@ -7,44 +7,64 @@ import { DaySchedule } from '../types/DaySchedule';
 export class TasksService {
   private daysSchedule: DaySchedule[] = [
     {
-      day: 'Luni',
+      day: Day.Monday,
       tasks: [
-        { title: 'Task 1', startTime: '10:00', endTime: '11:00' },
-        { title: 'Task 1', startTime: '10:00', endTime: '11:00' },
+        {
+          title: 'Task 1',
+          startTime: new Date('2021-09-20T10:00:00'),
+          endTime: new Date('2021-09-20T11:00:00'),
+        },
+        {
+          title: 'Task 2',
+          startTime: new Date('2021-09-20T12:00:00'),
+          endTime: new Date('2021-09-20T13:00:00'),
+        },
       ],
     },
     {
-      day: 'Marti',
+      day: Day.Tuesday,
       tasks: [
-        { title: 'Task 1', startTime: '10:00', endTime: '11:00' },
-        { title: 'Task 1', startTime: '10:00', endTime: '11:00' },
-        { title: 'Task 1', startTime: '10:00', endTime: '11:00' },
+        {
+          title: 'Task 3',
+          startTime: new Date('2021-09-21T10:00:00'),
+          endTime: new Date('2021-09-21T11:00:00'),
+        },
+        {
+          title: 'Task 4',
+          startTime: new Date('2021-09-21T12:00:00'),
+          endTime: new Date('2021-09-21T13:00:00'),
+        },
       ],
     },
     {
-      day: 'Miercuri',
-      tasks: [],
-    },
-    {
-      day: 'Joi',
-      tasks: [],
-    },
-    {
-      day: 'Vineri',
+      day: Day.Wednesday,
       tasks: [
-        { title: 'Task 1', startTime: '10:00', endTime: '11:00' },
-        { title: 'Task 1', startTime: '10:00', endTime: '11:00' },
-        { title: 'Task 1', startTime: '10:00', endTime: '11:00' },
-        { title: 'Task 1', startTime: '10:00', endTime: '11:00' },
-        { title: 'Task 1', startTime: '10:00', endTime: '11:00' },
+        {
+          title: 'Task 5',
+          startTime: new Date('2021-09-22T10:00:00'),
+          endTime: new Date('2021-09-22T11:00:00'),
+        },
+        {
+          title: 'Task 6',
+          startTime: new Date('2021-09-22T12:00:00'),
+          endTime: new Date('2021-09-22T13:00:00'),
+        },
       ],
     },
     {
-      day: 'Sambata',
+      day: Day.Thursday,
       tasks: [],
     },
     {
-      day: 'Duminica',
+      day: Day.Friday,
+      tasks: [],
+    },
+    {
+      day: Day.Saturday,
+      tasks: [],
+    },
+    {
+      day: Day.Sunday,
       tasks: [],
     },
   ];

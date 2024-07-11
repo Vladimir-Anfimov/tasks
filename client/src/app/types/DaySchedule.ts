@@ -1,13 +1,14 @@
 import { Task } from './Task';
 
-type Day =
-  | 'Luni'
-  | 'Marti'
-  | 'Miercuri'
-  | 'Joi'
-  | 'Vineri'
-  | 'Sambata'
-  | 'Duminica';
+export enum Day {
+  Monday,
+  Tuesday,
+  Wednesday,
+  Thursday,
+  Friday,
+  Saturday,
+  Sunday,
+}
 
 export interface DaySchedule {
   day: Day;
