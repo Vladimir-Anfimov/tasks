@@ -36,13 +36,13 @@ export class TasksListComponent {
 
   openAddTaskDialog() {
     const dialogRef = this.dialog.open(AddOrEditTaskDialogComponent, {
-      width: '500px',
+      width: '600px',
     });
   }
 
   openEditTaskDialog(task: Task) {
     const dialogRef = this.dialog.open(AddOrEditTaskDialogComponent, {
-      width: '500px',
+      width: '600px',
       data: task,
     });
   }
