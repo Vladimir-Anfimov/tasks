@@ -6,6 +6,7 @@ import {
   MatDialogActions,
   MatDialogClose,
   MAT_DIALOG_DATA,
+  MatDialogModule,
 } from '@angular/material/dialog';
 import {
   MatFormField,
@@ -37,20 +38,12 @@ import { Task } from '../../types/Task';
   selector: 'app-add-task-dialog',
   standalone: true,
   imports: [
-    MatDialogTitle,
-    MatDialogContent,
-    MatDialogActions,
-    MatDialogClose,
-    MatFormField,
+    MatDialogModule,
     MatInputModule,
     MatFormFieldModule,
-    MatInput,
     FormsModule,
     MatButtonModule,
     MatLabel,
-    MatDatepicker,
-    MatDatepickerToggle,
-    MatDatepickerInput,
     MatDatepickerModule,
     MatNativeDateModule,
     MatOption,
@@ -63,17 +56,13 @@ import { Task } from '../../types/Task';
 })
 export class AddOrEditTaskDialogComponent {
   public readonly AllDays = Object.values(Day);
-  private editedTaskId: string | null = null;
+  public editedTaskId: string | null = null;
   public taskForm = this.formBuilder.nonNullable.group({
     title: ['', [Validators.required, Validators.minLength(3)]],
     day: [Day.Monday, Validators.required],
     startTime: this.formBuilder.control<Date | null>(null, Validators.required),
     endTime: this.formBuilder.control<Date | null>(null, Validators.required),
   });
-
-  public isEdit(): boolean {
-    return this.editedTaskId !== null;
-  }
 
   constructor(
     private dialogRef: MatDialogRef<AddOrEditTaskDialogComponent>,
@@ -97,17 +86,13 @@ export class AddOrEditTaskDialogComponent {
   }
 
   manageTask() {
-    if (this.isEdit()) {
+    if (this.editedTaskId !== null) {
       this.editTask();
     } else {
       this.addTask();
     }
   }
   editTask() {
-    if (!this.taskForm.valid) {
-      return;
-    }
-
     const { title, day, startTime, endTime } = this.taskForm.controls;
 
     if (!startTime.value || !endTime.value || !this.editedTaskId) {
@@ -126,10 +111,6 @@ export class AddOrEditTaskDialogComponent {
   }
 
   addTask(): void {
-    if (!this.taskForm.valid) {
-      return;
-    }
-
     const { title, day, startTime, endTime } = this.taskForm.controls;
 
     if (!startTime.value || !endTime.value) {

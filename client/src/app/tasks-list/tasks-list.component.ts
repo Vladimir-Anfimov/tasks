@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DaySchedule } from '../types/DaySchedule';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
 import { MatIconModule } from '@angular/material/icon';
 import { Task } from '../types/Task';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tasks-list',
@@ -23,15 +24,13 @@ import { Task } from '../types/Task';
   templateUrl: './tasks-list.component.html',
   styleUrl: './tasks-list.component.scss',
 })
-export class TasksListComponent {
-  daysSchedule: DaySchedule[] = [];
+export class TasksListComponent implements OnInit {
+  daysSchedule$?: Observable<DaySchedule[]>;
 
   constructor(private tasksService: TasksService, public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.tasksService.subscribe((daysSchedule) => {
-      this.daysSchedule = daysSchedule;
-    });
+    this.daysSchedule$ = this.tasksService.daysSchedule;
   }
 
   openAddTaskDialog() {

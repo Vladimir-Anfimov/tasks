@@ -14,19 +14,16 @@ export class TasksService {
     }))
   );
 
-  subscribe(callback: (daysSchedule: DaySchedule[]) => void) {
-    this.daysScheduleSubject.subscribe(callback);
-  }
-
-  private sortTasks(tasks: Task[]) {
-    return tasks.sort((a, b) => a.startTime.getTime() - b.startTime.getTime());
+  get daysSchedule() {
+    console.log('got daysSchedule');
+    return this.daysScheduleSubject.asObservable();
   }
 
   addTask(task: Task) {
     let _daysSchedule = this.daysScheduleSubject.value.map((daySchedule) => {
       if (daySchedule.day === task.day) {
+        console.log('addTask');
         daySchedule.tasks.push(task);
-        daySchedule.tasks = this.sortTasks(daySchedule.tasks);
       }
       return daySchedule;
     });
@@ -36,6 +33,7 @@ export class TasksService {
   deleteTask(task: Task) {
     let _daysSchedule = this.daysScheduleSubject.value.map((daySchedule) => {
       if (daySchedule.day === task.day) {
+        console.log('deleteTask');
         daySchedule.tasks = daySchedule.tasks.filter(
           (dayTask) => dayTask.id !== task.id
         );

@@ -3,7 +3,7 @@
   <button mat-flat-button (click)="openAddTaskDialog()">Add Task</button>
 </div>
 <div class="tasks-container">
-  <div *ngFor="let dailySchedule of daysSchedule" class="tasks-list">
+  <div *ngFor="let dailySchedule of daysSchedule$ | async" class="tasks-list">
     <b class="task-item-title">{{ dailySchedule.day }}</b>
     <div *ngFor="let task of dailySchedule.tasks" class="task-item">
       <div class="task-item-content">
