@@ -1,52 +1,76 @@
 .tasks-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    h1 {
-        margin: 10px 20px;
-        color: white;
-        text-shadow: 1px 1px 2px #000000;
-    }
+  h1 {
+    margin: 10px 20px;
+    color: white;
+    text-shadow: 1px 1px 2px #000000;
+  }
 
-    button {
-        margin: 0 20px;
-        background-color: rgb(245, 245, 249);
-        box-shadow: 1px 1px 10px #00000042;
-    }
+  button {
+    margin: 0 20px;
+    background-color: rgb(245, 245, 249);
+    box-shadow: 1px 1px 10px #00000042;
+  }
 }
 
 .tasks-container {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    margin: 16px 32px;
-    gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: auto;
+  margin: 16px 32px;
+  gap: 16px;
 
-    .tasks-list {
+  .tasks-list {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    border: 1px solid rgb(201, 195, 195);
+    border-radius: 5px;
+    background-color: #e9e7e7;
+    align-self: start;
+
+    .task-item {
+      background-color: whitesmoke;
+      border-radius: 10px;
+      padding: 10px 20px;
+      box-shadow: 1px 0px 3px #888888b0;
+      padding: 5px 10px;
+      margin: 5px 0px;
+
+      .task-title {
+        margin: 0;
+        font-size: 16px;
+      }
+
+      .task-interval {
+        margin: 0;
+        font-size: 12px;
+      }
+
+      .task-item-content {
         display: flex;
-        flex-direction: column;
-        padding: 8px;
-        border: 1px solid rgb(201, 195, 195);
-        border-radius: 5px;
-        background-color: #e9e7e7;
+        justify-content: space-between;
 
-        .task-item {
-            background-color: whitesmoke;
-            border-radius: 10px;
-            padding: 10px 20px;
-            box-shadow: 1px 0px  3px #888888b0;
-            padding: 5px 10px;
-            margin: 5px 0px;
+        .task-actions {
+          display: flex;
+          gap: 5px;
+          flex-direction: column;
 
-            .task-title {
-                margin: 0;
-                font-size: 16px;
+          .task-action-icon {
+            cursor: pointer;
+            color: #000000;
+            font-size: 20px;
+            transition: all 0.3s;
+
+            &:hover {
+              color: #ff0000;
             }
-
-            .task-interval {
-                margin: 0;
-                font-size: 12px;
-            }
+          }
         }
+      }
     }
+  }
 }

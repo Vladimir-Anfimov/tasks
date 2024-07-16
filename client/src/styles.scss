@@ -8,3 +8,7 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: #186db3;
 }
+
+input[type=time]::-webkit-datetime-edit-ampm-field {
+  display: none;
+}
