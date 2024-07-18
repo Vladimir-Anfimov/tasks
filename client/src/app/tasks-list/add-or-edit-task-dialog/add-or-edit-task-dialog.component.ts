@@ -33,6 +33,7 @@ import { Day } from '../../types/DaySchedule';
 import { CommonModule } from '@angular/common';
 import { MatSelect } from '@angular/material/select';
 import { Task } from '../../types/Task';
+import { NewTask } from '../../types/NewTask';
 
 @Component({
   selector: 'app-add-task-dialog',
@@ -117,8 +118,7 @@ export class AddOrEditTaskDialogComponent {
       return;
     }
 
-    const task: Task = {
-      id: Math.random().toString(36),
+    const task: NewTask = {
       title: title.value,
       startTime: startTime.value,
       endTime: endTime.value,

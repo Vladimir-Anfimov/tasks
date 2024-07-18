@@ -1,5 +1,5 @@
 <h2 mat-dialog-title>{{ this.editedTaskId !== null ? "Edit" : "Add" }} Task</h2>
-<form [formGroup]="taskForm">
+<form [formGroup]="taskForm" (ngSubmit)="manageTask()">
   <mat-dialog-content>
     <div>
       <mat-form-field class="form-item">
@@ -34,8 +34,8 @@
     <button mat-button (click)="onNoClick()">Cancel</button>
     <button
       mat-button
+      type="submit"
       cdkFocusInitial
-      (click)="manageTask()"
       [disabled]="taskForm.invalid"
       [mat-dialog-close]="taskForm.value"
     >
