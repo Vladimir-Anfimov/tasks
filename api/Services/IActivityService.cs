@@ -5,8 +5,10 @@ namespace api.Services
 {
     public interface IActivityService
     {
-        Task<Activity> CreateAsync(CreateActivityDto createActivityDto);
-        Task<IEnumerable<Activity>> GetAllAsync();
-        Task<Activity> GetByIdAsync(Guid id);
+        Task<IEnumerable<ActivityDto>> GetAllAsync();
+        Task<ActivityDto> CreateAsync(UpsertActivityDto createActivityDto);
+        Task DeleteByIdAsync(Guid id);
+        
+        Task<ActivityDto> UpdateAsync(Guid id, UpsertActivityDto updateActivityDto);
     }
 }
