@@ -9,7 +9,10 @@
       <div class="task-item-content">
         <div>
           <p class="task-title">{{ task.title }}</p>
-          <p class="task-interval">{{ task.startTime }} - {{ task.endTime }}</p>
+          <p class="task-interval">
+            {{ task.startTime | date : "shortTime" }} -
+            {{ task.endTime | date : "shortTime" }}
+          </p>
         </div>
         <div class="task-actions">
           <mat-icon class="task-action-icon" (click)="deleteTask(task)"

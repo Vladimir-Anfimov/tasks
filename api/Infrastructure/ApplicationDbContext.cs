@@ -7,24 +7,11 @@ namespace api.Infrastructure;
 public class ApplicationDbContext : DbContext
 {
     public DbSet<Activity> Activities { get; set; }
-    private readonly string _dbPath;
 
-    public ApplicationDbContext()
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
-        _dbPath = GetDbPath();
     }
 
-    private string GetDbPath()
-    {
-        var folder = Environment.SpecialFolder.LocalApplicationData;
-        var path = Environment.GetFolderPath(folder);
-        return Path.Combine(path, "tasks.db");
-    }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlite($"Data Source={_dbPath}");
-    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -32,11 +19,12 @@ public class ApplicationDbContext : DbContext
         {
             x.HasKey(x => x.Id);
             x.Property(p =>p.Title).IsRequired().HasMaxLength(ActivityConstants.TitleMaxLength);
-            x.Property(p => p.StartDate).IsRequired();
-            x.Property(p => p.EndDate).IsRequired();
+            x.Property(p => p.Day).IsRequired();
+            x.Property(p => p.StartTime).IsRequired();
+            x.Property(p => p.EndTime).IsRequired();
         });
 
-        base.OnModelCreating(modelBuilder);
+        //base.OnModelCreating(modelBuilder);
     }
 
 }
